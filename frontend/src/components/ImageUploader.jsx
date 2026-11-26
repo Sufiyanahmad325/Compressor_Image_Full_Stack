@@ -1,8 +1,7 @@
 
 import { useEffect, useState } from "react";
 
-function ImageUploader() {
-    const [image, setImage] = useState(null);
+function ImageUploader({ image, setImage }) {
     const [preview, setPreview] = useState("");
 
     // Image preview URL create karna
@@ -38,6 +37,7 @@ function ImageUploader() {
         }
 
         setImage(selectedImage);
+        e.target.value = "";
     };
 
     // Image remove karna
