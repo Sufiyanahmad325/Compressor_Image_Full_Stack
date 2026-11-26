@@ -7,6 +7,25 @@ import CompressionOptions from "../components/CompressionOptions";
 function Home() {
   const [targetSize, setTargetSize] = useState(100);
   const [customSize, setCustomSize] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
+
+  const handleCompress = () => {
+    if (!selectedImage) {
+      alert("Please select an image first.");
+      return;
+    }
+
+    const finalSize =
+      targetSize === "custom" ? customSize : targetSize;
+
+    if (!finalSize || Number(finalSize) <= 0) {
+      alert("Please enter a valid target size.");
+      return;
+    }
+
+    console.log("Selected Image:", selectedImage);
+    console.log("Target Size:", finalSize, "KB");
+  };
 
   return (
     <>
@@ -22,7 +41,10 @@ function Home() {
         </p>
       </section>
 
-      <ImageUploader />
+      <ImageUploader
+        image={selectedImage}
+        setImage={setSelectedImage}
+      />
 
       <CompressionOptions
         targetSize={targetSize}
@@ -30,6 +52,15 @@ function Home() {
         customSize={customSize}
         setCustomSize={setCustomSize}
       />
+
+      <div className="text-center mt-8 mb-10 px-4">
+        <button
+          onClick={handleCompress}
+          className="bg-purple-600 hover:bg-purple-700 text-white font-semibold px-8 py-3 rounded-lg transition"
+        >
+          Compress Image
+        </button>
+      </div>
     </>
   );
 }
