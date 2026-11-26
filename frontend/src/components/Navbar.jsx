@@ -1,5 +1,6 @@
 
 import { useState } from "react";
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -15,9 +16,10 @@ function Navbar() {
 
         {/* Desktop Menu */}
         <div className="hidden md:flex items-center gap-8">
-          <a href="#" className="text-gray-700 hover:text-purple-600">Home</a>
-          <a href="#about" className="text-gray-700 hover:text-purple-600">About</a>
-          <a href="#contact" className="text-gray-700 hover:text-purple-600">Contact</a>
+          <NavLink to={"/"}  className="text-gray-700 hover:text-purple-600">Home</NavLink>
+          <NavLink to={"/about"} className="text-gray-700 hover:text-purple-600">About</NavLink>
+          <NavLink to={"/contact"}  className="text-gray-700 hover:text-purple-600">Contact</NavLink>
+          
         </div>
 
         {/* Mobile Menu Button */}
@@ -32,9 +34,9 @@ function Navbar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div className="md:hidden flex flex-col gap-4 px-4 pb-4">
-          <a href="#" onClick={() => setMenuOpen(false)}>Home</a>
-          <a href="#about" onClick={() => setMenuOpen(false)}>About</a>
-          <a href="#contact" onClick={() => setMenuOpen(false)}>Contact</a>
+          <NavLink to={"/"} onClick={() => setMenuOpen(false)}>Home</NavLink>
+          <NavLink  to={"/about"} onClick={() => setMenuOpen(false)}>About</NavLink>
+          <NavLink to={"/contact"} onClick={() => setMenuOpen(false)}>Contact</NavLink>
         </div>
       )}
     </nav>
